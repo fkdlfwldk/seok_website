@@ -137,3 +137,13 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Vercel
+.vercel
+
+# npm's lockfile is not authoritative here (pnpm-lock.yaml is)
+package-lock.json
+
+.vercel
+.env*
+next-env.d.ts

@@ -139,6 +139,13 @@ export default function AboutPage() {
 
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
+          <a
+            href="/network"
+            className="inline-block mb-16 px-6 py-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-sm text-gray-400 hover:text-white hover:border-emerald-500/40 transition-colors"
+          >
+            SEOK은 자체 미디어 SEOK Chronicle도 직접 운영합니다 — SEOK Network 보기 →
+          </a>
+
           <h2 className="text-4xl font-bold text-white mb-6">함께 성장할 준비가 되셨나요?</h2>
           <p className="text-lg text-gray-400 mb-8">
             SEOK과 함께 검색 시장을 선점하고, 지속 가능한 성장을 만들어가세요.
