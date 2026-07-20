@@ -4,15 +4,42 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/layout/navbar"
 import Footer from "@/components/layout/footer"
+import JsonLd from "@/components/JsonLd"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.seokmarketing.com"),
   title: "SEOK - 데이터 기반 SEO 마케팅 에이전시",
   description: "SEOK은 데이터 기반의 블로그 SEO 전략으로 브랜드의 온라인 가시성을 극대화합니다.",
   generator: "v0.app",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "SEOK",
+    title: "SEOK - 데이터 기반 SEO 마케팅 에이전시",
+    description: "SEOK은 데이터 기반의 블로그 SEO 전략으로 브랜드의 온라인 가시성을 극대화합니다.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SEOK - 데이터 기반 SEO 마케팅 에이전시",
+    description: "SEOK은 데이터 기반의 블로그 SEO 전략으로 브랜드의 온라인 가시성을 극대화합니다.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
   icons: {
     icon: [
       {
@@ -40,6 +67,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="dark">
       <body className={`font-sans antialiased`}>
+        <JsonLd />
         <Navbar />
         {children}
         <Footer />
