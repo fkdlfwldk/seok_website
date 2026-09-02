@@ -7,7 +7,7 @@ export const siteConfig = {
 
   contact: {
     ceo: "권기범",
-    email: "fkdlfwldk@naver.com",
+    email: "ceo@beombiom.com",
     phone: "+82 10 8965 7458",
     telegram: "@BIOSEOK",
     telegramUrl: "https://t.me/BIOSEOK",

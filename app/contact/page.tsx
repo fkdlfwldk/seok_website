@@ -80,10 +80,10 @@ export default function ContactPage() {
                   <div>
                     <div className="text-xs text-gray-500 mb-1">이메일</div>
                     <a
-                      href="mailto:fkdlfwldk@naver.com"
+                      href="mailto:ceo@beombiom.com"
                       className="text-white hover:text-emerald-400 transition-colors"
                     >
-                      fkdlfwldk@naver.com
+                      ceo@beombiom.com
                     </a>
                   </div>
                 </div>

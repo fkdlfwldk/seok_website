@@ -8,7 +8,7 @@ const jsonLd = {
       alternateName: ["에스이오케이", "에스이오케이 마케팅", "Search Engine Optimized Knowledge"],
       url: "https://www.seokmarketing.com/",
       description: "SEOK은 데이터 기반의 블로그 SEO 전략으로 브랜드의 온라인 가시성을 극대화하는 마케팅 에이전시입니다.",
-      email: "fkdlfwldk@naver.com",
+      email: "ceo@beombiom.com",
       founder: { "@id": "https://www.seokmarketing.com/#kwonkeybum" },
       knowsAbout: [
         "SEO",
@@ -28,7 +28,7 @@ const jsonLd = {
       alternateName: ["KWONKEYBUM", "kwonkeybum"],
       url: "https://www.seokmarketing.com/",
       jobTitle: "창업자",
-      email: "fkdlfwldk@naver.com",
+      email: "ceo@beombiom.com",
       worksFor: { "@id": "https://www.seokmarketing.com/#organization" },
       affiliation: [
         { "@type": "Organization", name: "범바이옴", alternateName: "beombiom" },

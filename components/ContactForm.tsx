@@ -1,7 +1,9 @@
 // components/ContactForm.tsx
 "use client"
 
-import { useState, type FormEvent } from "react"
+import { useRef, useState, type FormEvent } from "react"
+
+import { submitInquiry } from "@/app/actions/inquiries"
 
 interface FormData {
   name: string
@@ -25,6 +27,9 @@ export default function ContactForm() {
     privacyAgree: false,
     marketingAgree: false,
   })
+
+  // 봇 트랩. 사람 눈에 보이지 않는 필드라 값이 채워져 오면 스팸으로 처리한다.
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{
@@ -62,39 +67,56 @@ export default function ContactForm() {
 
     setIsSubmitting(true)
 
-    // 콘솔에 출력
-    console.log("문의 데이터:", formData)
+    const result = await submitInquiry({
+      ...formData,
+      sourcePage: typeof window !== "undefined" ? window.location.pathname : undefined,
+      honeypot: honeypotRef.current?.value ?? "",
+    })
 
-    // 시뮬레이션: 2초 후 성공 메시지
+    setIsSubmitting(false)
+
+    if ("error" in result && result.error) {
+      setSubmitStatus({ type: "error", message: result.error })
+      return
+    }
+
+    setSubmitStatus({
+      type: "success",
+      message: "문의가 성공적으로 전송되었습니다! 24시간 이내에 답변드리겠습니다.",
+    })
+
+    // 폼 초기화
+    setFormData({
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      inquiryType: "장기 블로그 운영",
+      message: "",
+      privacyAgree: false,
+      marketingAgree: false,
+    })
+
+    // 3초 후 메시지 제거
     setTimeout(() => {
-      setSubmitStatus({
-        type: "success",
-        message: "문의가 성공적으로 전송되었습니다! 24시간 이내에 답변드리겠습니다.",
-      })
-      setIsSubmitting(false)
-
-      // 폼 초기화
-      setFormData({
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        inquiryType: "장기 블로그 운영",
-        message: "",
-        privacyAgree: false,
-        marketingAgree: false,
-      })
-
-      // 3초 후 메시지 제거
-      setTimeout(() => {
-        setSubmitStatus({ type: null, message: "" })
-      }, 3000)
-    }, 2000)
+      setSubmitStatus({ type: null, message: "" })
+    }, 3000)
   }
 
   return (
     <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0C1F16] to-transparent border border-emerald-500/20">
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* 봇 트랩. 사람 눈에는 보이지 않으며, 값이 채워져 오면 스팸으로 처리한다. */}
+        <input
+          ref={honeypotRef}
+          type="text"
+          name="company_website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        />
+
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
